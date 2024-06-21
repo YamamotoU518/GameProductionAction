@@ -1,9 +1,11 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 0.1f;
-    [SerializeField] private float _jumpPower = 1f;
+    [SerializeField] private float _jumpPower = 2f;
+    [SerializeField] private GameObject _bullet = null;
 
     private float _positionX;
     private float _positionY;
@@ -37,5 +39,11 @@ public class Player : MonoBehaviour
 
         _positionX += _x * _speed;
         this.gameObject.transform.position = new Vector2(_positionX, _positionY + _jumpHeight);
+        
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (_bullet)
+                Instantiate(_bullet, this.gameObject.transform.position, quaternion.identity);
+        }
     }
 }
