@@ -8,11 +8,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Player _player = null;
     [SerializeField] private Bullet _enemyBullet = null;
     [SerializeField] private int _angle = 0;
+    public int Hp { get; set; }
 
     private float _timer = 0;
     void Start()
     {
-        
+        Hp = 3;
     }
     
     void Update()
