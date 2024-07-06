@@ -22,16 +22,16 @@ public class EnemyBulletCollision : MonoBehaviour
     
     void Update()
     {
-        _xMin = gameObject.transform.position.x - 0.25f;
-        _xMax = gameObject.transform.position.x + 0.25f;
-        _yMin = gameObject.transform.position.y - 0.125f;
-        _yMax = gameObject.transform.position.y + 0.125f;
+        _xMin = gameObject.transform.position.x - gameObject.transform.localScale.x / 2;
+        _xMax = gameObject.transform.position.x + gameObject.transform.localScale.x / 2;
+        _yMin = gameObject.transform.position.y - gameObject.transform.localScale.y / 2;
+        _yMax = gameObject.transform.position.y + gameObject.transform.localScale.y / 2;
 
        
-        _playerXMin = _player.transform.position.x - 0.25f;
-        _playerXMax = _player.transform.position.x + 0.25f;
-        _playerYMin = _player.transform.position.y - 0.25f;
-        _playerYMax = _player.transform.position.y + 0.25f;
+        _playerXMin = _player.transform.position.x - _player.transform.localScale.x / 2;
+        _playerXMax = _player.transform.position.x + _player.transform.localScale.x / 2;
+        _playerYMin = _player.transform.position.y - _player.transform.localScale.y / 2;
+        _playerYMax = _player.transform.position.y + _player.transform.localScale.y / 2;
 
         if (_xMin <= _playerXMax && _playerXMin <= _xMax && _yMin <= _playerYMax && _playerYMin <= _yMax)
         {

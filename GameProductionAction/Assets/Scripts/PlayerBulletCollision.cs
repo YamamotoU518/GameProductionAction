@@ -14,16 +14,16 @@ public class PlayerBulletCollision : MonoBehaviour
         var enemies = GameObject.FindObjectsOfType<Enemy>();
         foreach (var enemy in enemies)
         {
-            float xMin = gameObject.transform.position.x - 0.25f;
-            float xMax = gameObject.transform.position.x + 0.25f;
-            float yMin = gameObject.transform.position.y - 0.125f;
-            float yMax = gameObject.transform.position.y + 0.125f;
+            float xMin = gameObject.transform.position.x - gameObject.transform.localScale.x / 2;
+            float xMax = gameObject.transform.position.x + gameObject.transform.localScale.x / 2;
+            float yMin = gameObject.transform.position.y - gameObject.transform.localScale.y / 2;
+            float yMax = gameObject.transform.position.y + gameObject.transform.localScale.y / 2;
 
        
-            float enemyXMin = enemy.transform.position.x - 0.25f;
-            float enemyXMax = enemy.transform.position.x + 0.25f;
-            float enemyYMin = enemy.transform.position.y - 0.25f;
-            float enemyYMax = enemy.transform.position.y + 0.25f;
+            float enemyXMin = enemy.transform.position.x - enemy.transform.localScale.x / 2;
+            float enemyXMax = enemy.transform.position.x + enemy.transform.localScale.x / 2;
+            float enemyYMin = enemy.transform.position.y - enemy.transform.localScale.y / 2;
+            float enemyYMax = enemy.transform.position.y + enemy.transform.localScale.y / 2;
 
             if (xMin <= enemyXMax && enemyXMin <= xMax && yMin <= enemyYMax && enemyYMin <= yMax)
             {
