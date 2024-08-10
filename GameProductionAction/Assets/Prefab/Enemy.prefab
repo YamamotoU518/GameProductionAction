@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5939166177171839301}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.628708, y: -3.046683, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,3 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  _enemyBullet: {fileID: 7590277548101479475, guid: 47924a907c1863c4095b4c7b87f5d9a0, type: 3}
+  _angle: 180
+  _hp: 3

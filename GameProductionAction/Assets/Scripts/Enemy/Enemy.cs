@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Player _player = null;
-    [SerializeField] private Bullet _enemyBullet = null;
-    [SerializeField] private int _angle = 0;
-    public int Hp { get; set; }
+    [SerializeField] protected Player _player = null;
+    [SerializeField] protected Bullet _enemyBullet = null;
+    [SerializeField] protected int _angle = 0;
+
+    private int _hp = default;
+    public int HP => _hp;
 
     private float _timer = 0;
     void Start()
     {
-        Hp = 3;
+        _hp = 3;
+        _player = FindObjectOfType<Player>();
     }
     
     void Update()
@@ -21,7 +24,7 @@ public class Enemy : MonoBehaviour
         _timer += Time.deltaTime;
         var _distance = Vector3.Distance(this.gameObject.transform.position, _player.gameObject.transform.position);
 
-        if (_timer > 1f)
+        if (_timer > 3f)
         {
             if (_distance < 10)
             {
@@ -29,5 +32,10 @@ public class Enemy : MonoBehaviour
             }
             _timer = 0;
         }
+    }
+
+    public void Damage()
+    {
+        _hp--;
     }
 }
