@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -980345711870015593}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,4 +100,3 @@ MonoBehaviour:
   _player: {fileID: 0}
   _enemyBullet: {fileID: 7590277548101479475, guid: 47924a907c1863c4095b4c7b87f5d9a0, type: 3}
   _angle: 180
-  _hp: 3

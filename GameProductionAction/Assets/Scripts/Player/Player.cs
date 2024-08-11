@@ -1,3 +1,4 @@
+using TMPro.EditorUtilities;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,11 +8,12 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bullet = null;
 
     [SerializeField] private GameObject _pointer;
-    public int Hp { get; set; }
+    private int _hp = default;
+    public int HP => _hp;
   
     void Start()
     {
-        Hp = 5;
+        _hp = 5;
     }
 
     void Update()
@@ -26,5 +28,10 @@ public class Player : MonoBehaviour
                     Quaternion.AngleAxis(_radian * 180 / Mathf.PI, new Vector3(0, 0, 1)));
         }
         gameObject.transform.rotation = Quaternion.AngleAxis(_radian * 180 / Mathf.PI, new Vector3(0, 0, 1));
+    }
+
+    public void Damage()
+    {
+        _hp--;
     }
 }

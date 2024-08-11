@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdb4b7a02ea78040bca6376a0b6c056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletUser: 1
 --- !u!114 &-4880382312327221685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,9 +106,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4091924409662150473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee950c123f95ee489db7ccca6ec1e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4890241191041287184, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}

@@ -37,5 +37,9 @@ public class Enemy : MonoBehaviour
     public void Damage()
     {
         _hp--;
+        if (_hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
