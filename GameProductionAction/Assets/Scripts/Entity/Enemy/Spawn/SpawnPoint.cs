@@ -21,7 +21,6 @@ public class SpawnPoint : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= _spawnTime)
         {
-            //_list.Add(Instantiate(_prefab, gameObject.transform.position, Quaternion.identity));
             if (_prefabs[0] == null)
             {
                 _prefabs[0] = Instantiate(_prefab, gameObject.transform.position, Quaternion.identity);

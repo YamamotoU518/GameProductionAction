@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected Player _player = null;
-    [SerializeField] protected Bullet _enemyBullet = null;
-    [SerializeField] protected int _angle = 0;
-
-    private int _hp = default;
+    [SerializeField] private Bullet _enemyBullet = null;
+    [SerializeField] private int _angle = 0;
     
+    private Player _player = null;
+    private int _hp = default;
     private float _timer = 0;
+    
     void Start()
     {
         _hp = 3;
