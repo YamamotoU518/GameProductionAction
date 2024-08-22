@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _speed = 0.1f;
     [SerializeField] private float _jumpPower = 2f;
+    [SerializeField] private GameObject _pointer = default;
 
     private float _positionX;
     private float _positionY;
@@ -39,5 +40,10 @@ public class PlayerMove : MonoBehaviour
 
         _positionX += _x * _speed;
         this.gameObject.transform.position = new Vector2(_positionX, _positionY + _jumpHeight);
+        
+        float x = _pointer.transform.position.x - gameObject.transform.position.x;
+        float y = _pointer.transform.position.y - gameObject.transform.position.y;
+        float _radian = Mathf.Atan2(y, x);
+        gameObject.transform.rotation = Quaternion.AngleAxis(_radian * 180 / Mathf.PI, new Vector3(0, 0, 1));
     }
 }

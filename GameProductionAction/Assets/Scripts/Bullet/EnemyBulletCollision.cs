@@ -35,8 +35,8 @@ public class EnemyBulletCollision : MonoBehaviour
 
         if (_xMin <= _playerXMax && _playerXMin <= _xMax && _yMin <= _playerYMax && _playerYMin <= _yMax)
         {
-            _player.Damage();
-            Destroy(this.gameObject);
+            // _player.Damage();
+            // Destroy(this.gameObject);
         }
     }
 }

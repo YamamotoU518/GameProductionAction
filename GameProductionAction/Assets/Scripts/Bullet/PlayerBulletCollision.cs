@@ -27,8 +27,8 @@ public class PlayerBulletCollision : MonoBehaviour
 
             if (xMin <= enemyXMax && enemyXMin <= xMax && yMin <= enemyYMax && enemyYMin <= yMax)
             {
-                enemy.Damage();
-                Destroy(this.gameObject);
+                // enemy.Damage();
+                // Destroy(this.gameObject);
             }
         }
     }

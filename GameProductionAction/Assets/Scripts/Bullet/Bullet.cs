@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public enum BulletUser
@@ -9,61 +5,98 @@ public enum BulletUser
     Player,
     Enemy
 }
-
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private BulletUser _bulletUser = BulletUser.Player;
-
-    private readonly float _speed = 0.01f;
-    
-    private float _xMin;
-    private float _xMax;
-    private float _yMin;
-    private float _yMax;
-
-    void Update()
+    [SerializeField] protected BulletUser _bulletUser = BulletUser.Player;
+    protected bool TargetSet(int damage, GameObject obj, GameObject[] targets)
     {
-        UpdataBounds();
-        TargetSet();
-        float positionX = gameObject.transform.position.x;
-        transform.Translate(Vector2.right * _speed);
-        if (positionX > 12 || positionX < -12)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void UpdataBounds()
-    {
-        _xMin = transform.position.x - transform.localScale.x / 2;
-        _xMax = transform.position.x + transform.localScale.x / 2;
-        _yMin = transform.position.y - transform.localScale.y / 2;
-        _yMax = transform.position.y + transform.localScale.y / 2;
-    }
-
-    private void TargetSet()
-    {
-        var targets = GameObject.FindGameObjectsWithTag(_bulletUser == BulletUser.Player ? "Enemy" : "Player");
-
         foreach (var target in targets)
         {
-            float targetXMin = target.transform.position.x - target.transform.localScale.x / 2;
-            float targetXMax = target.transform.position.x + target.transform.localScale.x / 2;
-            float targetYMin = target.transform.position.y - target.transform.localScale.y / 2;
-            float targetYMax = target.transform.position.y + target.transform.localScale.y / 2;
-
-            if (_xMin <= targetXMax && targetXMin <= _xMax && _yMin <= targetYMax && targetYMin <= _yMax)
+            if (IsHit(obj.transform, target.transform))
             {
                 if (_bulletUser == BulletUser.Player)
                 {
-                    target.GetComponent<Enemy>().Damage();
+                    if (!target.GetComponent<Enemy>())
+                    {
+                        Destroy(target);
+                    }
+                    else
+                    {
+                        target.GetComponent<Enemy>().Damage(damage);
+                    }
                 }
                 else
                 {
-                    target.GetComponent<Player>().Damage();
+                    target.GetComponent<Player>().Damage(damage);
                 }
-                Destroy(this.gameObject);
+
+                return true;
             }
         }
+        return false;
+    }
+    
+    
+    private bool IsHit(Transform bullet, Transform target)
+    {
+        Vector3[] bulletCorners = GetCorners(bullet);
+        Vector3[] targetCorners = GetCorners(target);
+
+        // SATによる衝突判定
+        if (IsSeparatingAxis(bulletCorners, targetCorners) || IsSeparatingAxis(targetCorners, bulletCorners))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary> オブジェクトの頂点を取得する </summary>
+    /// <returns> 頂点の配列 </returns>
+    private Vector3[] GetCorners(Transform obj)
+    {
+        Vector3 halfSize = obj.localScale / 2;
+        Vector3[] corners = new Vector3[4];
+        
+        corners[0] = obj.TransformPoint(-halfSize.x, -halfSize.y, 0); // 左下
+        corners[1] = obj.TransformPoint(-halfSize.x, halfSize.y, 0);  // 左上
+        corners[2] = obj.TransformPoint(halfSize.x, halfSize.y, 0);   // 右上
+        corners[3] = obj.TransformPoint(halfSize.x, -halfSize.y, 0);  // 右下
+        
+        return corners;
+    }
+
+    /// <summary> 分離軸を見つける </summary>
+    /// <param name="axisCorners"> 調べたいオブジェクトの頂点 </param>
+    /// <param name="otherCorners"> もう一つのオブジェクトの頂点 </param>
+    /// <returns>true = 衝突していない、false = 衝突している</returns>
+    private bool IsSeparatingAxis(Vector3[] axisCorners, Vector3[] otherCorners)
+    {
+        for (int i = 0; i < axisCorners.Length; i++)
+        {
+            Vector3 edge = axisCorners[(i + 1) % axisCorners.Length] - axisCorners[i];
+            Vector3 axis = new Vector3(-edge.y, edge.x, 0).normalized;
+
+            float minA = float.MaxValue, maxA = float.MinValue;
+            float minB = float.MaxValue, maxB = float.MinValue;
+
+            foreach (var corner in axisCorners)
+            {
+                float projection = Vector3.Dot(corner, axis);
+                minA = Mathf.Min(minA, projection);
+                maxA = Mathf.Max(maxA, projection);
+            }
+
+            foreach (var corner in otherCorners)
+            {
+                float projection = Vector3.Dot(corner, axis);
+                minB = Mathf.Min(minB, projection);
+                maxB = Mathf.Max(maxB, projection);
+            }
+
+            if (maxA < minB || maxB < minA) { return true; }
+        }
+
+        return false;
     }
 }

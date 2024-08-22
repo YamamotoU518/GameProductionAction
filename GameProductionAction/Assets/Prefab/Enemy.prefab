@@ -98,5 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _enemyBullet: {fileID: 7590277548101479475, guid: 47924a907c1863c4095b4c7b87f5d9a0, type: 3}
+  _enemyBullet: {fileID: 3047347793646995004, guid: 47924a907c1863c4095b4c7b87f5d9a0, type: 3}
   _angle: 180

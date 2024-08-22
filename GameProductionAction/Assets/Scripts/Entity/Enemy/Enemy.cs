@@ -10,8 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int _angle = 0;
 
     private int _hp = default;
-    public int HP => _hp;
-
+    
     private float _timer = 0;
     void Start()
     {
@@ -34,9 +33,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Damage()
+    public void Damage(int damage)
     {
-        _hp--;
+        _hp -= damage;
         if (_hp <= 0)
         {
             Destroy(gameObject);

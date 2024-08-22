@@ -1225,14 +1225,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2210045734611945746, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
+      propertyPath: _pointer
+      value: 
+      objectReference: {fileID: 561968292}
     - target: {fileID: 4783707998166505137, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4890241191041287184, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 4091924409662150473, guid: 3b42562d394bff448a9e027eca45ef86, type: 3}
+    - target: {fileID: 4890241191041287184, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
       propertyPath: _pointer
       value: 
       objectReference: {fileID: 561968292}
+    - target: {fileID: 4890241191041287184, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
+      propertyPath: _laserBullet
+      value: 
+      objectReference: {fileID: 1353160736300103360, guid: a411ad21cb3acb842870d62696b0b6bb, type: 3}
+    - target: {fileID: 4890241191041287184, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
+      propertyPath: _longClickTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5094294712234648739, guid: d4bf2957c3d6697409aeb74ac0716884, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.89
