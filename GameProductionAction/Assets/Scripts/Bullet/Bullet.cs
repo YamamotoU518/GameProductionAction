@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum BulletUser
@@ -8,7 +9,13 @@ public enum BulletUser
 public class Bullet : MonoBehaviour
 {
     [SerializeField] protected BulletUser _bulletUser = BulletUser.Player;
-    [SerializeField] private IEntity _iEntity = default;
+    protected HitStop _hitStop = default;
+    
+    private void Start()
+    {
+        _hitStop = FindObjectOfType<HitStop>();
+    } 
+    
     protected bool TargetSet(int damage, GameObject obj, GameObject[] targets)
     {
         foreach (var target in targets)

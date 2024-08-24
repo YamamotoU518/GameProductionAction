@@ -20,6 +20,10 @@ public class NormalBullet : Bullet
     private void FindTargets()
     {
         var targets = GameObject.FindGameObjectsWithTag(_bulletUser == BulletUser.Player ? "Enemy" : "Player");
-        if (TargetSet(_damage, gameObject, targets)) { Destroy(gameObject); }
+        if (TargetSet(_damage, gameObject, targets))
+        {
+            if (_bulletUser == BulletUser.Player) { _hitStop.HitNormalBullet(); }
+            Destroy(gameObject);
+        }
     }
 }

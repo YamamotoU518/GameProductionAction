@@ -16,7 +16,10 @@ public class LaserBullet : Bullet
     {
         var targets = GameObject.FindGameObjectsWithTag("Enemy");
         var bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
-        TargetSet(_damage, transform.GetChild(0).gameObject, targets);
-        TargetSet(_damage, transform.GetChild(0).gameObject, bullets);
+        if(TargetSet(_damage, transform.GetChild(0).gameObject, targets) || 
+           TargetSet(_damage, transform.GetChild(0).gameObject, bullets))
+        {
+            _hitStop.HitLaserBullet();
+        }
     }
 }
