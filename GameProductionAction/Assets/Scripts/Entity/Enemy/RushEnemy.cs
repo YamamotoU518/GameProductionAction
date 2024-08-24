@@ -4,6 +4,7 @@ public class RushEnemy : MonoBehaviour
 {
     private Player _player = default;
     private bool _goToPlayer = false;
+    /// <summary> あたったときにplayerの位置が保存される </summary>
     private Vector3 _playerPos = default;
 
     private float _xMin = default;
@@ -55,7 +56,7 @@ public class RushEnemy : MonoBehaviour
 
         if (_xMin <= playerXMax && playerXMin <= _xMax && _yMin <= playerYMax && playerYMin <= _yMax)
         {
-            _player.Damage(1);
+            _player.Damage(1, _player.transform.position.x > gameObject.transform.position.x ? 1 : -1);
         }
     }
 }

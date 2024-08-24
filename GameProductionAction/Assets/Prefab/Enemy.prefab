@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7145083577125987169}
   - component: {fileID: 724016417403376813}
   - component: {fileID: -980345711870015593}
+  - component: {fileID: -189220619660702353}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -97,6 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca98e1fb0d4e2244c83ccb3cf9aadff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _enemyBullet: {fileID: 3047347793646995004, guid: 47924a907c1863c4095b4c7b87f5d9a0, type: 3}
   _angle: 180
+--- !u!114 &-189220619660702353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939166177171839301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ddd3b5563c43b4f8897a5bcf3fa578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

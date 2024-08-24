@@ -1,23 +1,32 @@
-using TMPro.EditorUtilities;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public enum PlayerState
+{
+    Normal,
+    SuperArmor
+}
+
+public class Player : MonoBehaviour, IEntity
 {
     [SerializeField, Header("普通の弾")] private GameObject _bullet = default;
     [SerializeField, Header("レーザー")] private GameObject _laserBullet = default;
+    [SerializeField] private float _superArmorTime = 1f;
+    [SerializeField] private PlayerState _playerState = PlayerState.Normal;
 
     /// <summary> これ以上押したら長押しとみなす </summary>
     [SerializeField] private float _longClickTime = default;
     /// <summary> 押された時間の長さ </summary>
     private float _clickTime = default;
+
+    private KnockBack _knockBack = default;
     
     private int _hp = default;
+    private float _timer = default;
   
     void Start()
     {
         _hp = 5;
+        _knockBack = gameObject.GetComponent<KnockBack>();
     }
 
     void Update()
@@ -25,6 +34,16 @@ public class Player : MonoBehaviour
         KeyRelease();
 
         KeyPress();
+
+        if (_playerState == PlayerState.SuperArmor)
+        {
+            _timer += Time.deltaTime;
+            if (_timer >= _superArmorTime)
+            {
+                _playerState = PlayerState.Normal;
+                _timer = 0;
+            }
+        }
     }
 
     private void KeyPress()
@@ -46,8 +65,11 @@ public class Player : MonoBehaviour
             _clickTime = 0;
         }
     }
-    public void Damage(int damage)
+    public void Damage(int damage, int direction)
     {
+        if (_playerState == PlayerState.SuperArmor) { return; }
         _hp -= damage;
+        _knockBack.Damage(direction);
+        _playerState = PlayerState.SuperArmor;
     }
 }

@@ -12,16 +12,12 @@ public class PlayerMove : MonoBehaviour
     private float _positionY;
     private float _jumpHeight = 0f;
     private int _jumpCount = 0;
-    void Start()
-    {
-        _positionX = this.gameObject.transform.position.x;
-        _positionY = this.gameObject.transform.position.y;
-
-    }
-
+    
     void Update()
     {
-        float _x = Input.GetAxisRaw("Horizontal");
+        _positionX = gameObject.transform.position.x;
+        _positionY = gameObject.transform.position.y;
+        
         if (_jumpHeight > 0f) { _jumpHeight -= 0.01f; }
         else
         {
@@ -38,12 +34,16 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        _positionX += _x * _speed;
-        this.gameObject.transform.position = new Vector2(_positionX, _positionY + _jumpHeight);
-        
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) >= 1)
+        {
+            float posX = Input.GetAxisRaw("Horizontal");
+            _positionX += posX * _speed;
+            gameObject.transform.position = new Vector2(_positionX, _positionY + _jumpHeight);
+        }
+
         float x = _pointer.transform.position.x - gameObject.transform.position.x;
         float y = _pointer.transform.position.y - gameObject.transform.position.y;
-        float _radian = Mathf.Atan2(y, x);
-        gameObject.transform.rotation = Quaternion.AngleAxis(_radian * 180 / Mathf.PI, new Vector3(0, 0, 1));
+        float radian = Mathf.Atan2(y, x);
+        gameObject.transform.rotation = Quaternion.AngleAxis(radian * 180 / Mathf.PI, new Vector3(0, 0, 1));
     }
 }

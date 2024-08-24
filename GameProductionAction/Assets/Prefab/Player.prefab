@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1510240581097185983}
   - component: {fileID: 4890241191041287184}
   - component: {fileID: 2210045734611945746}
+  - component: {fileID: 5494591580698319348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -98,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fb0ab8b72a530439d8c169e465e066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4091924409662150473, guid: 3b42562d394bff448a9e027eca45ef86, type: 3}
-  _pointer: {fileID: 0}
+  _bullet: {fileID: 0}
+  _laserBullet: {fileID: 0}
+  _longClickTime: 0
 --- !u!114 &2210045734611945746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +116,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.1
   _jumpPower: 2
+  _pointer: {fileID: 0}
+--- !u!114 &5494591580698319348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783707998166505137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ddd3b5563c43b4f8897a5bcf3fa578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

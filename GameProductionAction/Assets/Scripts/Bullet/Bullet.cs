@@ -8,28 +8,23 @@ public enum BulletUser
 public class Bullet : MonoBehaviour
 {
     [SerializeField] protected BulletUser _bulletUser = BulletUser.Player;
+    [SerializeField] private IEntity _iEntity = default;
     protected bool TargetSet(int damage, GameObject obj, GameObject[] targets)
     {
         foreach (var target in targets)
         {
             if (IsHit(obj.transform, target.transform))
             {
-                if (_bulletUser == BulletUser.Player)
+                if (target.CompareTag("EnemyBullet"))
                 {
-                    if (!target.GetComponent<Enemy>())
-                    {
-                        Destroy(target);
-                    }
-                    else
-                    {
-                        target.GetComponent<Enemy>().Damage(damage);
-                    }
+                    Destroy(target);
                 }
                 else
                 {
-                    target.GetComponent<Player>().Damage(damage);
+                    target.GetComponent<IEntity>().Damage(damage, 
+                        target.transform.position.x > gameObject.transform.position.x ? 1 : -1);
                 }
-
+                
                 return true;
             }
         }
